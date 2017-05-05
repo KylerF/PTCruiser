@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Arduino.h"
 #include <Servo.h>
 
@@ -10,8 +12,9 @@
 
 class CarServo {
   Servo servo;
-
+  
   public:
     CarServo();
     void turn(int turnDegrees);
 };
+

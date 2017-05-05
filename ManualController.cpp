@@ -1,8 +1,6 @@
 #include "ManualController.h"
 
-ManualController::ManualController() {
-  servo = CarServo();
-}
+ManualController::ManualController() {}
 
 void ManualController::turnCar(int turnDegrees) {
   servo.turn(turnDegrees);
