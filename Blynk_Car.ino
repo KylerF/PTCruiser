@@ -2,9 +2,6 @@
  * Car logic for manual control using the Blynk service.
  */
 
-// Turning servo pin
-#define SERVO 7
-
 // Main drive motor pins
 #define MOTOR_DIRECTION 3 // LOW = forward, HIGH = backward
 #define MOTOR_DRIVE 4
@@ -16,16 +13,17 @@
 #include <BlynkSimpleMKR1000.h>
 
 #include "CarServo.h"
+#include "VirtualParser.h"
 
-CarServo servo(SERVO);
+CarServo servo;
+VirtualParser parser;
 
 char localAuth[] = "f7bbbf4d3f754bd1a09a4ae38a313487";
 
 char ssid[] = "NETGEAR01";
 char pass[] = "pitterpatter";
 
-CarServo carServo(SERVO);
-
+// Set up Blynk virtual pin interrupts
 BLYNK_WRITE(V0) {
   int turnDegrees = param[0].asInt();
   servo.turn(turnDegrees);
@@ -44,6 +42,14 @@ BLYNK_WRITE(V1) {
 
   analogWrite(MOTOR_DRIVE, driveSpeed);
 }
+
+BLYNK_WRITE_DEFAULT() {
+  int pin = request.pin;
+  int vParam = param.asInt();
+
+  parser.vParse(pin, vParam);
+}
+
 
 void setup()
 {
