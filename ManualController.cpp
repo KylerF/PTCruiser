@@ -1,6 +1,9 @@
 #include "ManualController.h"
 
-ManualController::ManualController() {}
+ManualController::ManualController() {
+  pinMode(MOTOR_DRIVE, OUTPUT);
+  pinMode(MOTOR_DIRECTION, OUTPUT);
+}
 
 void ManualController::turnCar(int turnDegrees) {
   servo.turn(turnDegrees);
