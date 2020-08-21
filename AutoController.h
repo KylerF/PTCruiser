@@ -1,10 +1,12 @@
 #pragma once
 
 #include "Arduino.h"
-#include "CarServo.h"
-
 
 class AutoController {
-  CarServo servo;
+  public:
+    AutoController();
+    //MPUSensor mpuSensor;
+    void start();
+    void halt();
 };
 
